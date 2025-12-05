@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tiffinmate/screens/home_screen.dart';
 import 'package:tiffinmate/screens/login_screen.dart';
 import 'package:tiffinmate/screens/onboarding_screen1.dart';
 import 'package:tiffinmate/screens/splash_screen.dart';
