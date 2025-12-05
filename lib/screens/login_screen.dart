@@ -36,11 +36,6 @@ class LoginScreen extends StatelessWidget {
 
                 const SizedBox(height: 10),
 
-                const Text(
-                  "Log in to continue",
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
-                ),
-
                 const SizedBox(height: 30),
 
                 // Email Field
