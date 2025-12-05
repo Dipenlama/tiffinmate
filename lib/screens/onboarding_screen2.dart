@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiffinmate/screens/onboard_screen3.dart';
 
 class OnboardScreen2 extends StatelessWidget {
   const OnboardScreen2({super.key});
@@ -45,11 +46,12 @@ class OnboardScreen2 extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     // Navigator.pushNamed(context, "/onboard2");
+                     Navigator.push(context, MaterialPageRoute(builder: (_)=>OnboardScreen3()));
                     
 
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange,                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    backgroundColor: Colors.deepOrange,                    padding: const EdgeInsets.symmetric(vertical: 14),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -69,7 +71,7 @@ class OnboardScreen2 extends StatelessWidget {
               // SKIP button
               TextButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, "/login");
+                  // Navigator.pushReplacementNamed(context, "/login");
                 },
                 child: const Text(
                   "Skip",

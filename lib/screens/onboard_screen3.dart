@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tiffinmate/screens/onboarding_screen2.dart';
 
-class OnboardScreen1 extends StatelessWidget {
-  const OnboardScreen1({super.key});
+class OnboardScreen3 extends StatelessWidget {
+  const OnboardScreen3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class OnboardScreen1 extends StatelessWidget {
 
               // Onboard Image
               Image.asset(
-                "assets/images/onboard1.png",
+                "assets/images/onboard3.png",
                 height: 300,
                 fit: BoxFit.contain,
               ),
@@ -27,12 +26,9 @@ class OnboardScreen1 extends StatelessWidget {
 
               // Title
               const Text(
-                "Easy Meals for Busy Days.",
+                "Your Daily Tiffin Buddy.",
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
               ),
 
               const SizedBox(height: 20),
@@ -45,9 +41,11 @@ class OnboardScreen1 extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                  
                     // Navigator.pushNamed(context, "/onboard2");
-                     Navigator.push(context, MaterialPageRoute(builder: (_)=>OnboardScreen2()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => OnboardScreen3()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepOrange,
@@ -58,10 +56,7 @@ class OnboardScreen1 extends StatelessWidget {
                   ),
                   child: const Text(
                     "Next",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                    ),
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
               ),
@@ -71,14 +66,11 @@ class OnboardScreen1 extends StatelessWidget {
               // SKIP button
               TextButton(
                 onPressed: () {
-                  // Navigator.pushReplacementNamed(context, "/login");
+                  Navigator.pushReplacementNamed(context, "/login");
                 },
                 child: const Text(
                   "Skip",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
               ),
 
