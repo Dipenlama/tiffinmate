@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tiffinmate/screens/onboard_screen4.dart';
+import 'package:tiffinmate/screens/login_screen.dart';
 
-class OnboardScreen3 extends StatelessWidget {
-  const OnboardScreen3({super.key});
+class OnboardScreen4 extends StatelessWidget {
+  const OnboardScreen4({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class OnboardScreen3 extends StatelessWidget {
 
               // Onboard Image
               Image.asset(
-                "assets/images/onboard3.png",
+                "assets/images/onboard4.png", // replace with your image
                 height: 300,
                 fit: BoxFit.contain,
               ),
@@ -27,14 +27,13 @@ class OnboardScreen3 extends StatelessWidget {
 
               // Title
               const Text(
-                "Your Daily Tiffin Buddy.",
+                "Enjoy your meals anytime!",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
               ),
 
               const SizedBox(height: 20),
 
-              // Spacer pushes content upward
               const Spacer(),
 
               // NEXT button
@@ -42,11 +41,9 @@ class OnboardScreen3 extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigator.pushNamed(context, "/onboard2");
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => OnboardScreen4()),
-                    );
+                    // Navigate to LoginScreen
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginScreen()));
+
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepOrange,
@@ -67,7 +64,11 @@ class OnboardScreen3 extends StatelessWidget {
               // SKIP button
               TextButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, "/login");
+                  print("next button pressed");
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (_) => LoginScreen()),
+                  );
                 },
                 child: const Text(
                   "Skip",

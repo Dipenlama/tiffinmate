@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:tiffinmate/screens/onboarding_screen1.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -15,7 +17,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
     // Navigate to next screen after 2 seconds
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/login');
+     Navigator.push(context, MaterialPageRoute(builder: (_)=>OnboardScreen1()));
+
     });
   }
 
