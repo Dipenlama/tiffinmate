@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-
 import 'package:tiffinmate/screens/onboarding_screen1.dart';
 
 class SplashScreen extends StatefulWidget {
