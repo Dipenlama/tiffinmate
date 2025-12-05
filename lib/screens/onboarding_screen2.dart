@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tiffinmate/screens/onboarding_screen2.dart';
 
-class OnboardScreen1 extends StatelessWidget {
-  const OnboardScreen1({super.key});
+class OnboardScreen2 extends StatelessWidget {
+  const OnboardScreen2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class OnboardScreen1 extends StatelessWidget {
 
               // Onboard Image
               Image.asset(
-                "assets/images/onboard1.png",
+                "assets/images/onboard2.png",
                 height: 300,
                 fit: BoxFit.contain,
               ),
@@ -27,7 +26,7 @@ class OnboardScreen1 extends StatelessWidget {
 
               // Title
               const Text(
-                "Easy Meals for Busy Days.",
+                "Ghar-jasto Khana? just One Tap.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 26,
@@ -45,12 +44,12 @@ class OnboardScreen1 extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                  
-                    Navigator.pushNamed(context, "/onboard2");
+                    // Navigator.pushNamed(context, "/onboard2");
+                    
+
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    backgroundColor: Colors.orange,                    padding: const EdgeInsets.symmetric(vertical: 14),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -70,9 +69,7 @@ class OnboardScreen1 extends StatelessWidget {
               // SKIP button
               TextButton(
                 onPressed: () {
-                  // Navigator.pushReplacementNamed(context, "/login");
-                   Navigator.push(context, MaterialPageRoute(builder: (_)=>OnboardScreen2()));
-
+                  Navigator.pushReplacementNamed(context, "/login");
                 },
                 child: const Text(
                   "Skip",
