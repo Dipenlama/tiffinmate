@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class HomePage extends StatelessWidget {
                 child: Stack(
                   children: [
                     Image.asset(
-                      "assets/images/Rectangle.png",
+                      "assets/images/food4.png",
                       height: 180,
                       width: double.infinity,
                       fit: BoxFit.cover,
@@ -109,7 +109,7 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 20),
 
               const Text(
-                "Monthly Menu",
+                "Our Menu",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
@@ -117,10 +117,13 @@ class HomePage extends StatelessWidget {
               Expanded(
                 child: ListView(
                   children: [
-                    buildMenuCard("Monday", "Day 01", "assets/images/food1.png"),
-                    buildMenuCard("Tuesday", "Day 02", "assets/images/food2.png"),
-                    buildMenuCard("Wednesday", "Day 03", "assets/images/food3.png"),
-                    buildMenuCard("Thursday", "Day 04", "assets/images/food4.png"),
+                    buildMenuCard("Monday", "Rice, Tarkari & roti mix", "assets/images/food2.png"),
+                    buildMenuCard("Tuesday", "Thukpa- (chicken/buff)", "assets/images/thukpa.png"),
+                    buildMenuCard("Wednesday", "Daal Bhat Tarkari", "assets/images/food3.png"),
+                    buildMenuCard("Thursday", "Chana Items", "assets/images/food4.png"),
+                    buildMenuCard("Friday", "Sukkha Roti, Tarkari", "assets/images/food5.png"),
+                    buildMenuCard("Saturday", "Roti Cauliflower Tarkari", "assets/images/food6.png"),
+                    buildMenuCard("Sunday", "Fried Rice (chicken/veg/buff)", "assets/images/food7.png"),
                   ],
                 ),
               )

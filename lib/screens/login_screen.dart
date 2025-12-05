@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiffinmate/screens/home_screen.dart';
 import 'package:tiffinmate/screens/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -70,7 +71,9 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_)=>HomeScreen()));
+                    },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       backgroundColor: Colors.deepOrange,
