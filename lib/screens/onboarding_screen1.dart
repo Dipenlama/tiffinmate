@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiffinmate/screens/login_screen.dart';
 import 'package:tiffinmate/screens/onboarding_screen2.dart';
 
 class OnboardScreen1 extends StatelessWidget {
@@ -71,7 +72,7 @@ class OnboardScreen1 extends StatelessWidget {
               // SKIP button
               TextButton(
                 onPressed: () {
-                  // Navigator.pushReplacementNamed(context, "/login");
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder:(_)=>LoginScreen()));
                 },
                 child: const Text(
                   "Skip",
