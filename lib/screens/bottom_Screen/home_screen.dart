@@ -82,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Chenille Carpets",
+                            "Chana Items",
                             style: TextStyle(color: Colors.white, fontSize: 14),
                           ),
                           Text(

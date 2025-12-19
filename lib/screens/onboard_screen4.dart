@@ -41,9 +41,7 @@ class OnboardScreen4 extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigate to LoginScreen
-                    Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginScreen()));
-
+                    Navigator.pushNamed(context, '/login');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepOrange,
@@ -64,11 +62,7 @@ class OnboardScreen4 extends StatelessWidget {
               // SKIP button
               TextButton(
                 onPressed: () {
-                  print("next button pressed");
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (_) => LoginScreen()),
-                  );
+                  Navigator.pushNamed(context, '/login');
                 },
                 child: const Text(
                   "Skip",

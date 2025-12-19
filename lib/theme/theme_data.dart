@@ -5,7 +5,7 @@ ThemeData getApplicationTheme(){
         primarySwatch: Colors.orange,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
-        fontFamily: 'OpenSans Italic',
+        fontFamily: 'OpenSans Regular',
         
          elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
