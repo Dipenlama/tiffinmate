@@ -8,7 +8,6 @@ import 'package:tiffinmate/theme/bottom_navigationbar_theme.dart';
 import 'package:tiffinmate/theme/textform_field_theme.dart';
 import 'package:tiffinmate/theme/theme_data.dart';
 
-
 class App extends StatelessWidget {
   const App({super.key});
 

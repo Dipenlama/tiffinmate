@@ -14,7 +14,6 @@ ThemeData getApplicationTheme(){
               color: Colors.white,
               fontWeight: FontWeight.w500,
               fontFamily: 'OpenSans Bold',
-
             ),
             backgroundColor: Color.fromARGB(0, 164, 219, 164),
             shape: RoundedRectangleBorder(
