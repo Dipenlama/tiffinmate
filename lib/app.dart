@@ -14,7 +14,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-      title: 'Flutter Apps for College',
+      title: 'TiffinMate',
       debugShowCheckedModeBanner: false,
       theme: getApplicationTheme().copyWith(
         appBarTheme: getAppBarTheme(),
