@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tiffinmate/screens/login_screen.dart';
 
 class OnboardScreen4 extends StatelessWidget {
   const OnboardScreen4({super.key});

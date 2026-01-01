@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tiffinmate/screens/dashboard_screen.dart';
 import 'package:tiffinmate/screens/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
