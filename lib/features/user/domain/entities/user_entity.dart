@@ -1,4 +1,5 @@
 
+import 'package:equatable/equatable.dart';
 
 class BatchEntity extends Equatable {
   final String? userId;
