@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiffinmate/screens/login_screen.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
@@ -106,7 +107,9 @@ class SignupScreen extends StatelessWidget {
                 SizedBox(
                   height: 52,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder:(_)=>LoginScreen()));
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.deepOrange,
                       shape: RoundedRectangleBorder(

@@ -6,16 +6,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Cart'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-      ),
+      // backgcroundColor: Colors.white,
+      // bottomNavigationBar: BottomNavigationBar(
+      //   selectedItemColor: Colors.blue,
+      //   unselectedItemColor: Colors.grey,
+      //   items: const [
+      //     BottomNavigationBarItem(ion: Icon(Icons.home), label: 'Home'),
+      //     BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Cart'),
+      //     BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+      //   ],
+      // ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -38,25 +38,14 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 20),
 
               // Search Bar
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade200,
-                  borderRadius: BorderRadius.circular(12),
+              TextField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.black26,
+                  hintText: "Search Tiffin",
+                  focusedBorder: OutlineInputBorder()
                 ),
-                child: const Row(
-                  children: [
-                    Icon(Icons.search, color: Colors.grey),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: Text(
-                        "Search Tiffin",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    )
-                  ],
-                ),
+                
               ),
               const SizedBox(height: 20),
 
@@ -93,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Chenille Carpets",
+                            "Chana Items",
                             style: TextStyle(color: Colors.white, fontSize: 14),
                           ),
                           Text(
