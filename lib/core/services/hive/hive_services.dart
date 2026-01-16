@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:tiffinmate/core/constants/hive_table_constant.dart';
-import 'package:tiffinmate/features/auth/data/model/user_hive_model.dart';
+import 'package:tiffinmate/features/auth/data/model/auth_hive_model.dart';
 
 
 final hiveServiceProvider = Provider<HiveService>((ref) {

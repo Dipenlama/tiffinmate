@@ -1,4 +1,4 @@
-import 'package:tiffinmate/features/auth/data/model/user_hive_model.dart';
+import 'package:tiffinmate/features/auth/data/model/auth_hive_model.dart';
 
 abstract interface class IBatchDatasource {
   Future<List<UserHiveModel>> getAllBatches();
