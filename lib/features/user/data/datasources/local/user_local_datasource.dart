@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:tiffinmate/core/services/hive/hive_services.dart';
-import 'package:tiffinmate/features/auth/data/model/auth_hive_model.dart';
+import 'package:tiffinmate/core/services/hive/hive_service.dart';
+import 'package:tiffinmate/features/user/data/datasources/remote/user_datasource.dart';
 
 final batchLocalDataSourceProvider = Provider<BatchLocalDatasource>((ref) {
   return BatchLocalDatasource(hiveService: ref.read(hiveServiceProvider));

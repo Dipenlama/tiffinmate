@@ -1,87 +1,114 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive/hive.dart';
-import 'package:yumm_ai/core/constants/hive_table_contansts.dart';
-import 'package:yumm_ai/core/services/user_hive_service.dart';
-import 'package:yumm_ai/features/auth/data/datasource/user_datasource.dart';
-import 'package:yumm_ai/features/auth/data/model/user_hive_model.dart';
+import 'package:tiffinmate/core/services/hive/hive_service.dart';
+import 'package:tiffinmate/core/services/storage/user_session.dart';
+import 'package:tiffinmate/features/auth/data/datasource/auth_datasource.dart';
+import 'package:tiffinmate/features/auth/data/models/auth_hive_model.dart';
+
+
 
 final authLocalDatasourceProvider = Provider<AuthLocalDatasource>((ref) {
   final hiveService = ref.watch(hiveServiceProvider);
-  return AuthLocalDatasource(hiveService: hiveService);
+  final userSessionService = ref.read(userSessionServiceProvider);
+  
+  return AuthLocalDatasource(hiveService: hiveService, userSessionServices: userSessionService);
 });
 
-class AuthLocalDatasource implements IAuthDatasource {
+class AuthLocalDatasource implements IAuthLocalDataSource {
   final HiveService _hiveService;
-  AuthLocalDatasource({required HiveService hiveService})
-    : _hiveService = hiveService;
+  final UserSessionServices _userSessionServices;
 
-  Future<void> _ensureBoxOpen() async {
-    if (!Hive.isBoxOpen(HiveTableConstants.userTable)) {
-      await _hiveService.openBox();
-    }
-  }
+
+  AuthLocalDatasource({required HiveService hiveService,required UserSessionServices userSessionServices})
+    : _hiveService = hiveService,
+    _userSessionServices= userSessionServices;
 
   @override
-  Future<UserHiveModel?> loginWithEmailPassword(
-    String email,
-    String password,
-  ) async {
-    await _ensureBoxOpen();
-    final users = await _hiveService.getAllUsers();
-    final targetEmail = email.trim().toLowerCase();
-    UserHiveModel? user;
-    for (final u in users) {
-      if (u.email.toLowerCase() == targetEmail) {
-        user = u;
-        break;
-      }
-    }
-
-    if (user == null) return null;
-
-    final passwordMatches = (user.password ?? "").trim() == password.trim();
-    if (!passwordMatches) return null;
-
-    await _hiveService.setCurrentUser(user);
-    return user;
-  }
-
-  @override
-  Future<bool> signWithEmailPassword(UserHiveModel userEntity) async {
+  Future<bool> register(AuthHiveModel user) async {
     try {
-      await _ensureBoxOpen();
-      final users = await _hiveService.getAllUsers();
-      final alreadyExists = users.any(
-        (user) => user.email.toLowerCase() == userEntity.email.toLowerCase(),
-      );
-
-      if (alreadyExists) return false;
-
-      await _hiveService.createUser(userEntity);
-      return true;
+      await _hiveService.register(user);
+      return Future.value(true);
     } catch (e) {
-      return false;
+      return Future.value(false);
     }
   }
 
   @override
-  Future<UserHiveModel?> getCurrentUser() async {
+  Future<AuthHiveModel?> login(String email, String password) async {
     try {
-      await _ensureBoxOpen();
-      return _hiveService.getCurrentUser();
+      final user = _hiveService.login(email, password);
+      if(user != null){
+        await _userSessionServices.saveUserSession(userId: user.authId!, email:user.email, fullName: user.fullName);
+      }
+      return Future.value(user);
+    } catch (e) {
+      return Future.value(null);
+    }
+  }
+
+
+  @override
+  Future<bool> logout() async {
+    try {
+      await _hiveService.logout();
+      return Future.value(true);
+    } catch (e) {
+      return Future.value(false);
+    }
+  }
+
+  @override
+  Future<AuthHiveModel?> getUserById(String authId) async {
+    try {
+      return _hiveService.getUserById(authId);
     } catch (e) {
       return null;
     }
   }
 
   @override
-  Future<bool> logOut() async {
+  Future<AuthHiveModel?> getUserByEmail(String email) async {
     try {
-      await _ensureBoxOpen();
-      await _hiveService.clearCurrentUser();
+      return _hiveService.getUserByEmail(email);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  @override
+  Future<bool> updateUser(AuthHiveModel user) async {
+    try {
+      return await _hiveService.updateUser(user);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> deleteUser(String authId) async {
+    try {
+      await _hiveService.deleteUser(authId);
       return true;
     } catch (e) {
       return false;
     }
+  }
+
+  @override
+  Future<bool> doesEmailExist(String email) {
+    try {
+      final exists = _hiveService.doesEmailExist(email);
+      return Future.value(exists);
+    } catch (e) {
+      return Future.value(false);
+    }
+  }
+  
+  @override
+  Future<AuthHiveModel?> getCurrentUser(String authID) async{
+    try {
+    return _hiveService.getCurrentUser(authID);
+  } catch (e) {
+    return null;
+  }
   }
 }
