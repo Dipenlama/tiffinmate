@@ -16,14 +16,23 @@ class AuthApiModel {
   });
 
   //toJson
-  Map<String,dynamic> toJson(){
-    return{
-      "username":username,
-      "email":email,
-      "password":password,
-      "confirmPassword":confirmPassword,
+  // Map<String,dynamic> toJson(){
+  //   return{
+  //     "username":username,
+  //     "email":email,
+  //     "password":password,
+  //     "confirmPassword":confirmPassword,
+  //   };
+  // }
+  Map<String, dynamic> toJson() {
+    return {
+      "username": username,
+      "email": email,
+      "password": password,
+      "confirmPassword": confirmPassword ?? "",
     };
   }
+
 
 
   //fromJson
@@ -51,6 +60,7 @@ class AuthApiModel {
       username:entity.username,
       email: entity.email,
       password: entity.password,
+      confirmPassword: entity.confirmPassword,
     );
   }
 
