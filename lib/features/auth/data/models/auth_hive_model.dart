@@ -16,7 +16,7 @@ class AuthHiveModel extends HiveObject{
   final String? authId;
 
   @HiveField(1)
-  final String fullName;
+  final String username;
 
   @HiveField(2)
   final String email;
@@ -33,7 +33,7 @@ class AuthHiveModel extends HiveObject{
     String? authId,
     required this.email,
     this.password, 
-    required this.fullName,
+    required this.username,
      this.confirmPassword,
   }) : authId = authId ?? Uuid().v4();
 
@@ -41,7 +41,7 @@ class AuthHiveModel extends HiveObject{
   AuthEntity toEntity({AuthEntity? batch}) {
     return AuthEntity(
       authId: authId,
-      fullName: fullName,
+      username: username,
       email: email,
       password: password,
       confirmPassword:confirmPassword
@@ -52,7 +52,7 @@ class AuthHiveModel extends HiveObject{
   factory AuthHiveModel.fromEntity(AuthEntity entity) {
     return AuthHiveModel(
       authId:entity. authId,
-      fullName:entity. fullName,
+      username:entity. username,
       email: entity.email,
       password: entity.password,
       confirmPassword:entity.confirmPassword

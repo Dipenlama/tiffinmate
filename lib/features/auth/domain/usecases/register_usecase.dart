@@ -10,14 +10,14 @@ import 'package:tiffinmate/features/auth/domain/repositories/auth_repository.dar
 
 
 class RegisterUsecaseParams extends Equatable {
-  final String fullName;
+  final String username;
   final String email;
   final String password;
   final String confirmPassword;
 
 
   const RegisterUsecaseParams({
-    required this.fullName,
+    required this.username,
     required this.email,
     required this.password,
     required this.confirmPassword,
@@ -26,7 +26,7 @@ class RegisterUsecaseParams extends Equatable {
 
   @override
   List<Object?> get props => [
-    fullName,
+    username,
     email,
     password,
     confirmPassword,
@@ -48,7 +48,7 @@ class RegisterUsecase
   @override
   Future<Either<Failure, bool>> call(RegisterUsecaseParams params) {
     final authEntity = AuthEntity(
-      fullName: params.fullName,
+      username: params.username,
       email: params.email,
       password: params.password,
       confirmPassword: params.confirmPassword,

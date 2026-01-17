@@ -23,21 +23,21 @@ class UserSessionServices{
   static const String _keysIsLoggedIn='is_logged_in';
   static const String _keyUserId='user_id';
   static const String _keyUserEmail='user_email';
-  static const String _keyUserFullName='user_full_name';
+  static const String _keyUserName='user_name';
 
 // Store user session data
 
 Future<void> saveUserSession({
 required String userId,
 required String email,
-required String fullName,
+required String username
 
 
 }) async {
 await _prefs.setBool(_keysIsLoggedIn, true);
 await _prefs.setString(_keyUserId, userId);
 await _prefs.setString(_keyUserEmail, email);
-await _prefs.setString(_keyUserFullName, fullName);
+await _prefs.setString(_keyUserName, username);
 
 }
 
@@ -45,7 +45,7 @@ await _prefs.setString(_keyUserFullName, fullName);
     await _prefs.remove(_keysIsLoggedIn);
     await _prefs.remove(_keyUserId);
     await _prefs.remove(_keyUserEmail);
-    await _prefs.remove(_keyUserFullName);
+    await _prefs.remove(_keyUserName);
  
   }
 
@@ -61,7 +61,7 @@ await _prefs.setString(_keyUserFullName, fullName);
   }
 
   String? getFullName() {
-  return _prefs.getString(_keyUserFullName);
+  return _prefs.getString(_keyUserName);
   }
 
 }

@@ -37,7 +37,7 @@ class AuthLocalDatasource implements IAuthLocalDataSource {
     try {
       final user = _hiveService.login(email, password);
       if(user != null){
-        await _userSessionServices.saveUserSession(userId: user.authId!, email:user.email, fullName: user.fullName);
+        await _userSessionServices.saveUserSession(userId: user.authId!, email:user.email, username: user.username);
       }
       return Future.value(user);
     } catch (e) {
