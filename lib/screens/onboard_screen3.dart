@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tiffinmate/screens/login_screen.dart';
+import 'package:tiffinmate/features/auth/presentation/pages/login_screen.dart';
 import 'package:tiffinmate/screens/onboard_screen4.dart';
 
 class OnboardScreen3 extends StatelessWidget {
