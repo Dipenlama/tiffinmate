@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tiffinmate/core/api/api_client.dart';
 import 'package:tiffinmate/core/api/api_endpoints.dart';
 import 'package:tiffinmate/core/services/storage/user_session.dart';
@@ -21,6 +22,9 @@ class AuthRemoteDatasource implements IAuthRemoteDataSource{
 
   final ApiClient _apiClient;
   final UserSessionServices _userSessionServices;
+  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
+
+  static const String _tokenKey = 'auth_token';
 
    AuthRemoteDatasource({
     required ApiClient apiClient,
@@ -41,7 +45,25 @@ class AuthRemoteDatasource implements IAuthRemoteDataSource{
       data:{'email':email,'password':password});
 
       if(response.data['success']==true){
-      final data= response.data['data'] as Map<String,dynamic>;
+      final raw = response.data as Map<String, dynamic>;
+      final data= raw['data'] as Map<String,dynamic>;
+
+      // Try to extract JWT token from common fields
+      String? token;
+      if (raw['accessToken'] is String) {
+        token = raw['accessToken'] as String;
+      } else if (raw['token'] is String) {
+        token = raw['token'] as String;
+      } else if (data['accessToken'] is String) {
+        token = data['accessToken'] as String;
+      } else if (data['token'] is String) {
+        token = data['token'] as String;
+      }
+
+      if (token != null && token.isNotEmpty) {
+        await _secureStorage.write(key: _tokenKey, value: token);
+      }
+
       final user= AuthApiModel.fromJson(data);
 
       // save to session
@@ -49,6 +71,7 @@ class AuthRemoteDatasource implements IAuthRemoteDataSource{
         userId: user.id!, 
         email: email,  
         username: user.username,
+        role: user.role,
         );
       return user;
     }
