@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tiffinmate/features/bookings/presentation/pages/bookings_list_screen.dart';
 import 'package:tiffinmate/screens/bottom_Screen/about.dart';
-import 'package:tiffinmate/screens/bottom_Screen/cart_screen.dart';
+import 'package:tiffinmate/screens/bottom_Screen/menu_screen.dart';
 import 'package:tiffinmate/screens/bottom_Screen/home_screen.dart';
 import 'package:tiffinmate/screens/bottom_Screen/profile_screen.dart';
 
@@ -16,10 +17,9 @@ class _BottomNavigationScreenState extends State<DashboardScreen> {
   int _selectedIndex=0;
   List<Widget> lstBottomScreen=[
     const HomeScreen(),
-    const CartScreen(),
+    const MenuScreen(),
+    const BookingsListScreen(),
     const ProfileScreen(),
-    const AboutScreen(),
-    
   ];
 
   @override
@@ -37,12 +37,13 @@ class _BottomNavigationScreenState extends State<DashboardScreen> {
         BottomNavigationBarItem(icon: Icon(Icons.home),
         label: 'Home'),
         
-        BottomNavigationBarItem(icon: Icon(Icons.shopping_bag),
-        label: 'Cart'),
+        BottomNavigationBarItem(icon: Icon(Icons.restaurant_menu),
+        label: 'Menu'),
+        
+        BottomNavigationBarItem(icon: Icon(Icons.album_outlined),
+        label: 'Bookings'),
         BottomNavigationBarItem(icon: Icon(Icons.person),
         label: 'profile'),
-        BottomNavigationBarItem(icon: Icon(Icons.album_outlined),
-        label: 'About')
       ],
       backgroundColor: Colors.lightBlue,
       

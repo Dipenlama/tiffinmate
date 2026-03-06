@@ -44,7 +44,8 @@ class AuthHiveModel extends HiveObject{
       username: username,
       email: email,
       password: password,
-      confirmPassword:confirmPassword
+      confirmPassword:confirmPassword,
+      role: 'user',
     );
   }
 

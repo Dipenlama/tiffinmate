@@ -7,6 +7,7 @@ import 'package:tiffinmate/theme/appbar_theme.dart';
 import 'package:tiffinmate/theme/bottom_navigationbar_theme.dart';
 import 'package:tiffinmate/theme/textform_field_theme.dart';
 import 'package:tiffinmate/theme/theme_data.dart';
+import 'package:tiffinmate/features/items/presentation/pages/items_list_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -26,6 +27,7 @@ class App extends StatelessWidget {
         '/':(context) =>const SplashScreen(),
         '/login': (context)=> const LoginScreen(),
         '/signup': (context)=> const SignupScreen(),
+        '/items': (context)=> const ItemsListScreen(),
         '/dashboard': (context)=> const DashboardScreen(),
       },
     );

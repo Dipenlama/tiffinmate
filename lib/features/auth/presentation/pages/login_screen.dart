@@ -4,6 +4,7 @@ import 'package:tiffinmate/features/auth/presentation/pages/signup_screen.dart';
 import 'package:tiffinmate/features/auth/presentation/view_model/auth_viewmodel.dart';
 import 'package:tiffinmate/features/auth/presentation/state/auth_state.dart';
 import 'package:tiffinmate/screens/dashboard_screen.dart';
+import 'package:tiffinmate/features/admin/presentation/pages/admin_dashboard_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -49,10 +50,19 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       }
 
       if (next.status == AuthStatus.authenticated) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const DashboardScreen()),
-        );
+        final role = next.user?.role ?? 'user';
+
+        if (role == 'admin') {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => const AdminDashboardScreen()),
+          );
+        } else {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => const DashboardScreen()),
+          );
+        }
       }
     });
 

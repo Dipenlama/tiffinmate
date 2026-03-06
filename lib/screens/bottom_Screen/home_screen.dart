@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tiffinmate/features/items/domain/entities/item_entity.dart';
+import 'package:tiffinmate/features/items/presentation/pages/item_detail_screen.dart';
+import 'package:tiffinmate/features/items/presentation/state/items_state.dart';
+import 'package:tiffinmate/features/items/presentation/view_model/items_viewmodel.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -104,16 +109,55 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 10),
 
               Expanded(
-                child: ListView(
-                  children: [
-                    buildMenuCard("Monday", "Rice, Tarkari & roti mix", "assets/images/food2.png"),
-                    buildMenuCard("Tuesday", "Thukpa- (chicken/buff)", "assets/images/thukpa.png"),
-                    buildMenuCard("Wednesday", "Daal Bhat Tarkari", "assets/images/food3.png"),
-                    buildMenuCard("Thursday", "Chana Items", "assets/images/food4.png"),
-                    buildMenuCard("Friday", "Sukkha Roti, Tarkari", "assets/images/food5.png"),
-                    buildMenuCard("Saturday", "Roti Cauliflower Tarkari", "assets/images/food6.png"),
-                    buildMenuCard("Sunday", "Fried Rice (chicken/veg/buff)", "assets/images/food7.png"),
-                  ],
+                child: Consumer(
+                  builder: (context, ref, _) {
+                    final state = ref.watch(itemsViewModelProvider);
+
+                    if (state.status == ItemsStatus.initial) {
+                      Future.microtask(() =>
+                          ref.read(itemsViewModelProvider.notifier).loadItems());
+                    }
+
+                    if (state.status == ItemsStatus.loading ||
+                        state.status == ItemsStatus.initial) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+
+                    if (state.status == ItemsStatus.error) {
+                      return Center(
+                        child: Text(state.errorMessage ?? 'Failed to load items'),
+                      );
+                    }
+
+                    if (state.items.isEmpty) {
+                      return const Center(child: Text('No items found'));
+                    }
+
+                    return GridView.builder(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 12,
+                        childAspectRatio: 3 / 4,
+                      ),
+                      itemCount: state.items.length,
+                      itemBuilder: (context, index) {
+                        final item = state.items[index];
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ItemDetailScreen(item: item),
+                              ),
+                            );
+                          },
+                          child: buildMenuCard(item),
+                        );
+                      },
+                    );
+                  },
                 ),
               )
             ],
@@ -123,44 +167,82 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget buildMenuCard(String day, String label, String imagePath) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12.0),
+  Widget buildMenuCard(ItemEntity item) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 6,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),
-        child: Stack(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
-              imagePath,
-              height: 120,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
-            Positioned(
-              left: 12,
-              bottom: 12,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            Expanded(
+              child: Stack(
                 children: [
-                  Text(
-                    day,
-                    style: const TextStyle(color: Colors.white, fontSize: 14),
+                  Positioned.fill(
+                    child: item.image != null && item.image!.isNotEmpty
+                        ? Image.network(
+                            item.image!,
+                            fit: BoxFit.cover,
+                          )
+                        : Image.asset(
+                            'assets/images/food4.png',
+                            fit: BoxFit.cover,
+                          ),
                   ),
-                  Text(
-                    label,
-                    style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                  Positioned(
+                    right: 8,
+                    top: 8,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.6),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        'Rs ${item.price.toStringAsFixed(1)}',
+                        style: const TextStyle(color: Colors.white, fontSize: 11),
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-            const Positioned(
-              right: 12,
-              bottom: 12,
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.blue),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (item.category != null && item.category!.isNotEmpty)
+                    Text(
+                      item.category!,
+                      style: const TextStyle(
+                        fontSize: 11,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  const SizedBox(height: 4),
+                  Text(
+                    item.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),

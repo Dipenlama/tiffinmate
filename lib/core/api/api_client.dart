@@ -153,6 +153,8 @@ class _AuthInterceptor extends Interceptor {
       // ApiEndpoints.categories,
       ApiEndpoints.login,
       ApiEndpoints.register,
+      ApiEndpoints.menu,
+      ApiEndpoints.recipes,
     ];
 
     final isPublicGet =

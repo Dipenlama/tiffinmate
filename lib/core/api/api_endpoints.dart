@@ -20,4 +20,19 @@ class ApiEndpoints {
   static const String auth = '/auth';
   static const String register = '/auth/register';
   static const String login = '/auth/login';
+
+  // ============ Item Endpoints ============
+  static const String items = '/items';
+
+  // ============ Menu Endpoints ============
+  static const String menu = '/menu';
+  static const String recipes = '/recipes';
+
+  // ============ Booking Endpoints ============
+  static const String bookings = '/bookings';
+
+  // ============ Admin Endpoints ============
+  static const String adminUsers = '/admin/users';
+  static const String adminItems = '/admin/items';
+  static const String adminBookings = '/admin/bookings';
 }
