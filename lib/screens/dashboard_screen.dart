@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tiffinmate/features/bookings/presentation/pages/bookings_list_screen.dart';
 import 'package:tiffinmate/screens/bottom_Screen/about.dart';
-import 'package:tiffinmate/screens/bottom_Screen/cart_screen.dart';
+import 'package:tiffinmate/screens/bottom_Screen/menu_screen.dart';
 import 'package:tiffinmate/screens/bottom_Screen/home_screen.dart';
 import 'package:tiffinmate/screens/bottom_Screen/profile_screen.dart';
 
@@ -16,10 +17,9 @@ class _BottomNavigationScreenState extends State<DashboardScreen> {
   int _selectedIndex=0;
   List<Widget> lstBottomScreen=[
     const HomeScreen(),
-    const CartScreen(),
+    const MenuScreen(),
+    const BookingsListScreen(),
     const ProfileScreen(),
-    const AboutScreen(),
-    
   ];
 
   @override
@@ -37,10 +37,14 @@ class _BottomNavigationScreenState extends State<DashboardScreen> {
         BottomNavigationBarItem(icon: Icon(Icons.home),
         label: 'Home'),
         
-        BottomNavigationBarItem(icon: Icon(Icons.shopping_bag),
-        label: 'Cart'),
+        BottomNavigationBarItem(icon: Icon(Icons.restaurant_menu),
+        label: 'Menu'),
+        
+        BottomNavigationBarItem(icon: Icon(Icons.album_outlined),
+        label: 'Bookings'),
         BottomNavigationBarItem(icon: Icon(Icons.person),
         label: 'profile'),
+<<<<<<< HEAD
         BottomNavigationBarItem(icon: Icon(Icons.album_outlined),
         label: 'About')
       <uses-permission android:name="android.permission.CAMERA" />
@@ -48,6 +52,9 @@ class _BottomNavigationScreenState extends State<DashboardScreen> {
       <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
       <!-- For older Android versions -->
       <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />      ],
+=======
+      ],
+>>>>>>> ea6c531c00e0006e1206e631070b59bac692c3af
       backgroundColor: Colors.lightBlue,
       
       currentIndex: _selectedIndex,
