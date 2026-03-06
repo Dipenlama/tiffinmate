@@ -43,7 +43,11 @@ class _BottomNavigationScreenState extends State<DashboardScreen> {
         label: 'profile'),
         BottomNavigationBarItem(icon: Icon(Icons.album_outlined),
         label: 'About')
-      ],
+      <uses-permission android:name="android.permission.CAMERA" />
+      <!-- For Android 13+ -->
+      <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+      <!-- For older Android versions -->
+      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />      ],
       backgroundColor: Colors.lightBlue,
       
       currentIndex: _selectedIndex,
