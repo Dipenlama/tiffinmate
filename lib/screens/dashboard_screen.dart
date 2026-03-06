@@ -43,18 +43,8 @@ class _BottomNavigationScreenState extends State<DashboardScreen> {
         BottomNavigationBarItem(icon: Icon(Icons.album_outlined),
         label: 'Bookings'),
         BottomNavigationBarItem(icon: Icon(Icons.person),
-        label: 'profile'),
-<<<<<<< HEAD
-        BottomNavigationBarItem(icon: Icon(Icons.album_outlined),
-        label: 'About')
-      <uses-permission android:name="android.permission.CAMERA" />
-      <!-- For Android 13+ -->
-      <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-      <!-- For older Android versions -->
-      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />      ],
-=======
-      ],
->>>>>>> ea6c531c00e0006e1206e631070b59bac692c3af
+          label: 'profile'),
+        ],
       backgroundColor: Colors.lightBlue,
       
       currentIndex: _selectedIndex,
